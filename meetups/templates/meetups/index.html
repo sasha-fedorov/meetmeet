@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+  Home
+{% endblock %}
+
+{% block content %}
+  <h1>Meetups</h1>
+  {% for meetup in meetup_list %}
+    <div>
+      <h3>{{ meetup.title }}</h3>
+      <p>{{ meetup.description }}</p>
+      <p>{{ meetup.start_datetime }}</p>
+    </div>
+  {% empty %}
+    <p>No meetups yet.</p>
+  {% endfor %}
+{% endblock %}
