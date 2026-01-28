@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.views import generic
+from .models import Meetup
 
-# Create your views here.
+
+class MeetupsList(generic.ListView):
+    queryset = Meetup.objects.all()
+    template_name = "meetups/index.html"
