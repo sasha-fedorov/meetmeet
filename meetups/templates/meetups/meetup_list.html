@@ -17,10 +17,7 @@
   <div>
     {% for meetup in meetups %}
       <div>
-        <h3><a href="
-          {% comment %} {% url 'meetup_detail' meetup.pk %} {% endcomment %}
-          ">{{ meetup.title }}</a></h3>
-
+        <h3><a href="{% url 'meetup_detail' meetup.pk %}">{{ meetup.title }}</a></h3>
         <p>
           <strong>Date:</strong> {{ meetup.start_datetime|date:' H:i, l d.m.y' }}
         </p>
@@ -39,9 +36,7 @@
         <p>{{ meetup.description|truncatewords:20 }}</p>
 
         <div>
-          <a href="
-          {% comment %} {% url 'meetup_detail' meetup.pk %} {% endcomment %}
-          ">View Details</a>
+          <a href="{% url 'meetup_detail' meetup.pk %}">View Details</a>
         </div>
       </div>
   {% empty %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+  {{ meetup.title }}
+{% endblock %}
+
+{% block content %}
+  <article>
+    <header>
+      <h1>{{ meetup.title }}</h1>
+      <p>
+        Hosted by <strong>{{ meetup.organizer.username }}</strong>
+      </p>
+    </header>
+
+    <div>
+      <p>
+        <strong>When:</strong> {{ meetup.start_datetime|date:'F j, Y, g:i a' }}
+      </p>
+      <p>
+        <strong>Duration:</strong> {{ meetup.duration_minutes }} minutes
+      </p>
+      <p>
+        <strong>Ends:</strong> {{ meetup.end_datetime|date:'g:i a' }}
+      </p>
+      <p>
+        <strong>Location:</strong> {{ meetup.location_text }}
+      </p>
+
+      {% if meetup.online_link %}
+        <p>
+          <strong>Join Online:</strong> <a href="{{ meetup.online_link }}">{{ meetup.online_link }}</a>
+        </p>
+      {% endif %}
+    </div>
+
+    <section class="description">
+      <h3>Description</h3>
+      <p>{{ meetup.description|linebreaks }}</p>
+    </section>
+
+    <div>
+      {% if request.user == meetup.organizer %}
+        <a href="
+            {% comment %} {% url 'meetup_update' meetup.pk %} {% endcomment %}
+            " class="btn btn-primary">Edit Meetup</a>
+      {% else %}
+        {% if meetup.is_open %}
+          <button class="btn btn-success">Join Meetup</button>
+        {% else %}
+          <button class="btn btn-warning">Request to Join</button>
+        {% endif %}
+      {% endif %}
+    </div>
+  </article>
+{% endblock %}
