@@ -5,14 +5,65 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Meetups</h1>
-  {% for meetup in meetup_list %}
-    <div>
-      <h3>{{ meetup.title }}</h3>
-      <p>{{ meetup.description }}</p>
-      <p>{{ meetup.start_datetime }}</p>
-    </div>
+  <header>
+    <h1>Meetups</h1>
+    <a href="
+    {% comment %} {% url 'meetup_create' %} {% endcomment %}
+    ">+ Create New</a>
+  </header>
+
+  <hr />
+
+  <div>
+    {% for meetup in meetups %}
+      <div>
+        <h3><a href="
+          {% comment %} {% url 'meetup_detail' meetup.pk %} {% endcomment %}
+          ">{{ meetup.title }}</a></h3>
+
+        <p>
+          <strong>Date:</strong> {{ meetup.start_datetime|date:' H:i, l d.m.y' }}
+        </p>
+        <p>
+          <strong>Location:</strong> {{ meetup.location_text|truncatechars:30 }}
+        </p>
+
+        <div>
+          {% if meetup.is_open %}
+            <span>Open Access</span>
+          {% else %}
+            <span>Approval Required</span>
+          {% endif %}
+        </div>
+
+        <p>{{ meetup.description|truncatewords:20 }}</p>
+
+        <div>
+          <a href="
+          {% comment %} {% url 'meetup_detail' meetup.pk %} {% endcomment %}
+          ">View Details</a>
+        </div>
+      </div>
   {% empty %}
-    <p>No meetups yet.</p>
+    <div>
+      <p>No meetups found. Why not host one?</p>
+      <a href="
+      {% comment %} {% url 'meetup_create' %} {% endcomment %}
+      " class="btn btn-primary">Create a Meetup</a>
+    </div>
   {% endfor %}
+
+  {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul>
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
 {% endblock %}
