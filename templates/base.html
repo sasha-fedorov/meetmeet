@@ -1,5 +1,4 @@
 {% load static %}
-{% url 'home' as home_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@
   </head>
   <body>
     <nav>
-      <a href="{% url 'home' %}">MeetMeet</a>
+      <a href="{% url 'meetup_list' %}">MeetMeet</a>
 
       |{% if user.is_authenticated %}
         Logged in as {{ user.username }} |
