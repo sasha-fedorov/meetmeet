@@ -1,28 +1,15 @@
-from django.shortcuts import render, get_object_or_404
-from django.views import generic
+from django.views.generic import DetailView, ListView
 from .models import Meetup
 
 
-class MeetupsList(generic.ListView):
+class MeetupsListView(ListView):
     queryset = Meetup.objects.all()
     template_name = "meetups/meetup_list.html"
     context_object_name = 'meetups'
     paginate_by = 20
 
 
-def meetup_detail(request, pk):
-    """
-    Display an individual :model:`meetups.Meetup`.
-
-    **Context**
-
-    ``meetup``
-        An instance of :model:`meetups.Meetup`.
-
-    **Template:**
-
-    :template:`meetups/meetup_detail.html`
-    """
-    queryset = Meetup.objects.filter()
-    meetup = get_object_or_404(queryset, pk=pk)
-    return render(request, "meetups/meetup_detail.html", {"meetup": meetup},)
+class MeetupDetailView(DetailView):
+    model = Meetup
+    template_name = "meetups/meetup_detail.html"
+    context_object_name = "meetup"
