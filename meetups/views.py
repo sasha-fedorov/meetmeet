@@ -53,3 +53,12 @@ class MeetupUpdateView(MeetupFormMixin, UpdateView):
     model = Meetup
     fields = ['title', 'description', 'start_datetime', 'duration_minutes',
               'location_text', 'online_link',]
+
+
+class MeetupDeleteView(DeleteView):
+    model = Meetup
+    success_url = reverse_lazy('meetup_list')
+
+    # Optional: Ensure only the organizer can delete it
+    def get_queryset(self):
+        return self.model.objects.filter(organizer=self.request.user)

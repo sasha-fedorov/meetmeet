@@ -49,4 +49,11 @@
       Cancel
     </a>
   </form>
+
+  {% if object %}
+    <form action="{% url 'meetup_delete' object.pk %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+    </form>
+  {% endif %}
 {% endblock %}

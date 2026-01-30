@@ -9,4 +9,6 @@ urlpatterns = [
          views.MeetupCreateView.as_view(), name='meetup_create'),
     path('meetups/<int:pk>/edit/',
          views.MeetupUpdateView.as_view(), name='meetup_update'),
+    path('meetups/<int:pk>/delete/',
+         views.MeetupDeleteView.as_view(), name='meetup_delete'),
 ]
