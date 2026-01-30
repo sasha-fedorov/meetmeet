@@ -14,31 +14,30 @@
 
   <hr />
 
-  <div>
-    {% for meetup in meetups %}
+  {% for meetup in meetups %}
+    <div>
+      <h3><a href="{% url 'meetup_detail' meetup.pk %}">{{ meetup.title }}</a></h3>
+      <p>
+        <strong>Date:</strong> {{ meetup.start_datetime|date:' H:i, l d.m.y' }}
+      </p>
+      <p>
+        <strong>Location:</strong> {{ meetup.location_text|truncatechars:30 }}
+      </p>
+
       <div>
-        <h3><a href="{% url 'meetup_detail' meetup.pk %}">{{ meetup.title }}</a></h3>
-        <p>
-          <strong>Date:</strong> {{ meetup.start_datetime|date:' H:i, l d.m.y' }}
-        </p>
-        <p>
-          <strong>Location:</strong> {{ meetup.location_text|truncatechars:30 }}
-        </p>
-
-        <div>
-          {% if meetup.is_open %}
-            <span>Open Access</span>
-          {% else %}
-            <span>Approval Required</span>
-          {% endif %}
-        </div>
-
-        <p>{{ meetup.description|truncatewords:20 }}</p>
-
-        <div>
-          <a href="{% url 'meetup_detail' meetup.pk %}">View Details</a>
-        </div>
+        {% if meetup.is_open %}
+          <span>Open Access</span>
+        {% else %}
+          <span>Approval Required</span>
+        {% endif %}
       </div>
+
+      <p>{{ meetup.description|truncatewords:20 }}</p>
+
+      <div>
+        <a href="{% url 'meetup_detail' meetup.pk %}">View Details</a>
+      </div>
+    </div>
   {% empty %}
     <div>
       <p>No meetups found. Why not host one?</p>
@@ -50,15 +49,18 @@
 
   {% if is_paginated %}
     <nav aria-label="Page navigation">
-        <ul>
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
+      <ul>
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+          </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
     </nav>
-    {% endif %}
-
+  {% endif %}
 {% endblock %}
