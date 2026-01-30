@@ -7,9 +7,7 @@
 {% block content %}
   <header>
     <h1>Meetups</h1>
-    <a href="
-    {% comment %} {% url 'meetup_create' %} {% endcomment %}
-    ">+ Create New</a>
+    <a href="{% url 'meetup_create' %}">+ Create New</a>
   </header>
 
   <hr />
@@ -41,9 +39,7 @@
   {% empty %}
     <div>
       <p>No meetups found. Why not host one?</p>
-      <a href="
-      {% comment %} {% url 'meetup_create' %} {% endcomment %}
-      " class="btn btn-primary">Create a Meetup</a>
+      <a href="{% url 'meetup_create' %}">Create a Meetup</a>
     </div>
   {% endfor %}
 

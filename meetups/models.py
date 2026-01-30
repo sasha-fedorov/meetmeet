@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.urls import reverse
 from django.core.exceptions import ValidationError
 
 
@@ -16,17 +17,21 @@ class Meetup(models.Model):
 
     is_open = models.BooleanField(
         default=True,
-        help_text="If false, users must request approval to join."
+        help_text="If unchecked, users must request approval to join. "
+                  "Can not be changed in a future."
     )
 
     max_participants = models.PositiveIntegerField(
         null=True,
         blank=True,
         help_text="Leave empty for unlimited participants."
+                  "Can not be changed in a future."
     )
 
     start_datetime = models.DateTimeField()
-    duration_minutes = models.PositiveIntegerField()
+    duration_minutes = models.PositiveIntegerField(
+        help_text="Duration (in minutes)"
+    )
 
     location_text = models.CharField(
         max_length=255,
@@ -47,8 +52,8 @@ class Meetup(models.Model):
         ordering = ["start_datetime"]
 
     def __str__(self):
-        return f"{self.title} "\
-            "({self.start_datetime.strftime('%Y-%m-%d %H:%M')})"
+        return (f"[{self.pk}] {self.organizer} - {self.title} "
+                f"({self.start_datetime.strftime('%Y-%m-%d %H:%M')})")
 
     def clean(self):
         super().clean()
@@ -72,6 +77,10 @@ class Meetup(models.Model):
         # If the dictionary isn't empty, raise all errors at once
         if errors:
             raise ValidationError(errors)
+
+    def get_absolute_url(self):
+        """ Return the URL for a specific meetup detail page """
+        return reverse('meetup_detail', kwargs={'pk': self.pk})
 
     @property
     def end_datetime(self):

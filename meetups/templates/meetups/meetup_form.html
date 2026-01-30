@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block head_title %}
+  {% if object %}
+    Update
+  {% else %}
+    Create
+  {% endif %}Meetup
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% if object %}
+      Update
+    {% else %}
+      Create
+    {% endif %}Meetup
+  </h2>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      <div>
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <small>{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <div>{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <button type="submit">
+      {% if object %}
+        Save Changes
+      {% else %}
+        Create Meetup
+      {% endif %}
+    </button>
+
+    <a href="{% if object %}
+        {% url 'meetup_detail' object.pk %}
+      {% else %}
+        {% url 'meetup_list' %}
+      {% endif %}">
+      Cancel
+    </a>
+  </form>
+{% endblock %}
