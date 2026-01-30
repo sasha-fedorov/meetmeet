@@ -51,13 +51,27 @@ class Meetup(models.Model):
             "({self.start_datetime.strftime('%Y-%m-%d %H:%M')})"
 
     def clean(self):
-        """Custom validation rules."""
-        if self.start_datetime < timezone.now():
-            raise ValidationError("Meetup cannot be scheduled in the past.")
+        super().clean()
+        errors = {}  # Dictionary to store all field-specific errors
 
-        if self.online_link and not self.online_link.startswith(
-                ("http://", "https://")):
-            raise ValidationError("Online link must be a valid URL.")
+        # 1. Date Validation
+        if self.start_datetime and self.start_datetime < timezone.now():
+            errors['start_datetime'] = "Meetup cannot be scheduled in the past"
+
+        # 2. URL Validation
+        if self.online_link and not self.online_link.startswith((
+                "http://", "https://")):
+            errors['online_link'] = "Online link must be a valid URL " \
+                                    "starting with http or https"
+
+        # 3. Participants Validation
+        if self.max_participants is not None and self.max_participants < 1:
+            errors['max_participants'] = "Max participants must be greater" \
+                                         "than 0 or left empty"
+
+        # If the dictionary isn't empty, raise all errors at once
+        if errors:
+            raise ValidationError(errors)
 
     @property
     def end_datetime(self):
