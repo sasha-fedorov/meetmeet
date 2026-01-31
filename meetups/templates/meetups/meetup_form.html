@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load i18n %}
+
+{% load django_bootstrap5 %}
 
 {% block head_title %}
   {% if object %}
@@ -10,50 +11,49 @@
 {% endblock %}
 
 {% block content %}
-  <h2>
-    {% if object %}
-      Update
-    {% else %}
-      Create
-    {% endif %}Meetup
-  </h2>
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="h3 text-center fw-bolder card-title my-2">
+            {% if object %}
+              Update
+            {% else %}
+              Create
+            {% endif %}Meetup
+          </h2>
 
-  <form method="post" novalidate>
-    {% csrf_token %}
-    {% for field in form %}
-      <div>
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% if field.help_text %}
-          <small>{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <div>{{ error }}</div>
-        {% endfor %}
+          <form method="post" novalidate>
+            {% csrf_token %}
+
+            {# This one tag replaces your entire manual loop! #}
+            {% bootstrap_form form %}
+
+            <div class="d-flex gap-2 mt-4">
+              <button type="submit" class="btn btn-primary">
+                {% if object %}
+                  Save Changes
+                {% else %}
+                  Create Meetup
+                {% endif %}
+              </button>
+
+              <a href="{% if object %}
+                  {% url 'meetup_detail' object.pk %}
+                {% else %}
+                  {% url 'meetup_list' %}
+                {% endif %}"
+                class="btn btn-secondary">
+                Cancel
+              </a>
+
+              {% if object %}
+                <a href="{% url 'meetup_delete' object.pk %}" class="btn btn-danger ms-auto">Delete</a>
+              {% endif %}
+            </div>
+          </form>
+        </div>
       </div>
-    {% endfor %}
-
-    <button type="submit">
-      {% if object %}
-        Save Changes
-      {% else %}
-        Create Meetup
-      {% endif %}
-    </button>
-
-    <a href="{% if object %}
-        {% url 'meetup_detail' object.pk %}
-      {% else %}
-        {% url 'meetup_list' %}
-      {% endif %}">
-      Cancel
-    </a>
-  </form>
-
-  {% if object %}
-    <form action="{% url 'meetup_delete' object.pk %}" method="post">
-      {% csrf_token %}
-      <button type="submit">Delete</button>
-    </form>
-  {% endif %}
+    </div>
+  </div>
 {% endblock %}
