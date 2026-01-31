@@ -15,6 +15,10 @@ nav .btn {
   width: 5rem;
 }
 
+#id_password_helptext {
+  display: none !important;
+}
+
 * {
   border-radius: 0 !important;
 }
