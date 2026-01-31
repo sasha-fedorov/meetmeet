@@ -41,7 +41,7 @@
                 <span class="navbar-text"><strong>{{ user.username|truncatechars:15 }}</strong></span>
               </li>
               <li class="nav-item ms-md-3 my-2 my-md-0">
-                <a class="btn btn-outline-danger btn-sm" href="{% url 'account_logout' %}">Logout</a>
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'account_logout' %}?next={{ request.path }}">Logout</a>
               </li>
             {% else %}
               <li class="nav-item">
