@@ -11,6 +11,16 @@ body {
   font-weight: 800;
 }
 
+nav .btn {
+  width: 5rem;
+}
+
 * {
   border-radius: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-side-el-width {
+    width: 17rem;
+  }
 }

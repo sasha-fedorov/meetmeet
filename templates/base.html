@@ -19,14 +19,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'meetup_list' %}">MeetMeet</a>
+        <a class="navbar-brand navbar-side-el-width me-0" href="{% url 'meetup_list' %}">MeetMeet</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
 
-        <div class="collapse navbar-collapse text-end align-items-end" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
+        <div class="collapse navbar-collapse text-end" id="navbarNav">
+          <ul class="navbar-nav ms-auto mx-md-auto">
             <li class="nav-item">
               <a class="nav-link" href="{% url 'meetup_list' %}">Home</a>
             </li>
@@ -35,20 +35,20 @@
             </li> {% endcomment %}
           </ul>
 
-          <ul class="navbar-nav align-items-end align-items-lg-center my-auto">
+          <ul class="navbar-nav navbar-side-el-width d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-end">
             {% if user.is_authenticated %}
               <li class="nav-item">
-                <span class="navbar-text">Logged in as <br class="d-lg-none" /><strong>{{ user.username }}</strong></span>
+                <span class="navbar-text"><strong>{{ user.username|truncatechars:15 }}</strong></span>
               </li>
-              <li class="nav-item ms-2 my-2 my-lg-0">
+              <li class="nav-item ms-md-3 my-2 my-md-0">
                 <a class="btn btn-outline-danger btn-sm" href="{% url 'account_logout' %}">Logout</a>
               </li>
             {% else %}
               <li class="nav-item">
-                <a class="btn btn-outline-primary btn-sm my-2 my-lg-0" href="{% url 'account_login' %}">Login</a>
+                <a class="btn btn-outline-primary btn-sm mt-2 mt-md-0" href="{% url 'account_login' %}">Login</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-outline-success btn-sm ms-2 my-2 my-lg-0" href="{% url 'account_signup' %}">Register</a>
+                <a class="btn btn-outline-success btn-sm ms-md-2 my-2 my-md-0" href="{% url 'account_signup' %}">Register</a>
               </li>
             {% endif %}
           </ul>
@@ -62,7 +62,7 @@
       {% endblock %}
     </main>
 
-    <footer class="container-fluid text-center p-3 bg-body-tertiary">
+    <footer class="container-fluid text-center p-3 bg-body-tertiary fixed-bottom">
       <a class="link-dark link-underline-opacity-0" href="https://github.com/sasha-fedorov" target="_blank" rel="external">© 2026 Copyright: Sasha Fedorov</a>
     </footer>
 
