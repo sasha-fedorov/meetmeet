@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'meetups'
+    'meetups',
+    'django_bootstrap5',
 ]
 
 # Allauth configuration variables
