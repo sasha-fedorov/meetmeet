@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
@@ -18,7 +20,7 @@ class MeetupDetailView(DetailView):
     context_object_name = "meetup"
 
 
-class MeetupFormMixin:
+class MeetupFormMixin(LoginRequiredMixin):
     def get_form(self):
         form = super().get_form()
         if 'start_datetime' in form.fields:
@@ -49,10 +51,17 @@ class MeetupCreateView(MeetupFormMixin, CreateView):
               'location_text', 'online_link', 'is_open', 'max_participants']
 
 
-class MeetupUpdateView(MeetupFormMixin, UpdateView):
+class MeetupUpdateView(MeetupFormMixin, UserPassesTestMixin, UpdateView):
     model = Meetup
     fields = ['title', 'description', 'start_datetime', 'duration_minutes',
               'location_text', 'online_link',]
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.organizer == self.request.user
+
+    def handle_no_permission(self):
+        return redirect('meetup_list')
 
 
 class MeetupDeleteView(DeleteView):
