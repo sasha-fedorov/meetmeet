@@ -6,7 +6,8 @@ body {
   font-weight: 400;
   font-style: normal;
 
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
+}
 
 :root {
   --bs-primary: #e440f7;
