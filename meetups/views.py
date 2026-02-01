@@ -11,10 +11,18 @@ from .models import Meetup, MeetupParticipation
 
 
 class MeetupsListView(ListView):
-    queryset = Meetup.objects.all()
     template_name = "meetups/meetup_list.html"
     context_object_name = 'meetups'
     paginate_by = 12
+
+    def get_queryset(self):
+        queryset = Meetup.objects.all()
+        if self.request.user.is_authenticated:
+            my_meetups = queryset.filter(organizer=self.request.user)
+            other_meetups = queryset.exclude(organizer=self.request.user)
+            return list(my_meetups) + list(other_meetups)
+
+        return queryset
 
 
 class MeetupDetailView(DetailView):
