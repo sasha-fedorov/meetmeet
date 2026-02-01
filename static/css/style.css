@@ -36,6 +36,20 @@ body {
   --bs-btn-active-color: #fff;
 }
 
+.page-link {
+  color: var(--bs-primary);
+}
+
+.page-link:hover {
+  color: var(--bs-primary-darker);
+}
+
+.active > .page-link,
+.page-link.active {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
 .form-check-input:checked {
   background-color: var(--bs-primary);
   border-color: var(--bs-primary);
