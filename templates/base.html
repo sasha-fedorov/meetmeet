@@ -13,6 +13,9 @@
       {% endblock %}
     </title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/svg+xml" sizes="any" href="{% static 'images/favicon.svg' %}" />
+
     <!-- Botstrap CSS -->
     {% bootstrap_css %}
 
@@ -22,7 +25,10 @@
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand navbar-side-el-width me-0" href="{% url 'meetup_list' %}">MeetMeet</a>
+        <a class="navbar-brand navbar-side-el-width me-0" href="{% url 'meetup_list' %}">
+          <img src="{% static 'images/favicon.svg' %}" alt="" width="24" height="24" class="d-inline-block align-text-top" />
+          MeetMeet
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
 
