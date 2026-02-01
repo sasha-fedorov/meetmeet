@@ -89,6 +89,10 @@ class Meetup(models.Model):
             minutes=self.duration_minutes
         )
 
+    @property
+    def is_past(self):
+        return self.start_datetime < timezone.now()
+
 
 class MeetupParticipation(models.Model):
     class Status(models.TextChoices):
