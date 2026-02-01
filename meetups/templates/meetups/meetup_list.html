@@ -10,7 +10,7 @@
 {% block content %}
   <div id="banner-container">
     <div class="py-5 mb-4">
-      <div class="container banner-text-container text-center p-4">
+      <div class="container text-center p-4">
         <h1 class="display-4 fw-bold">Explore Meetups</h1>
         <p class="lead px-2">Join local events or host your own community gathering.</p>
         <a href="{% url 'meetup_create' %}" class="btn btn-primary btn-lg px-4"><i class="bi bi-plus-lg"></i> Create New Meetup</a>
@@ -55,8 +55,8 @@
           </div>
         </div>
       {% empty %}
-        <div class="col-12 text-center py-5">
-          <div class="card py-5 border-dashed">
+        <div class="col-md-6 text-center py-5 mx-auto">
+          <div class="card border-dashed py-5">
             <p class="text-muted">No meetups found. Why not host one?</p>
             <div>
               <a href="{% url 'meetup_create' %}" class="btn btn-primary">Create a Meetup</a>
