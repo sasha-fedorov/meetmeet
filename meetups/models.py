@@ -127,7 +127,7 @@ class MeetupParticipation(models.Model):
         ordering = ["-requested_at"]
 
     def __str__(self):
-        return f"{self.meetup}: {self.user} ({self.status})"
+        return f"[{self.pk}] {self.user} ({self.status}) {self.meetup}"
 
     def approve(self):
         """Approve a pending participation request."""
