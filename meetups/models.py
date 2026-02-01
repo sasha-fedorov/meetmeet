@@ -6,6 +6,10 @@ from django.core.exceptions import ValidationError
 
 
 class Meetup(models.Model):
+    """
+    Main model representing a meetup event.
+    Stores event details, timing, and participant constraints.
+    """
     organizer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -15,6 +19,7 @@ class Meetup(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
 
+    # If True, users join instantly. If False, organizer must approve.
     is_open = models.BooleanField(
         default=True,
         help_text="If unchecked, users must request approval to join. "
@@ -48,33 +53,36 @@ class Meetup(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        """Default sorting field"""
-        ordering = ["-start_datetime"]
+        ordering = ["-start_datetime"]  # Show upcoming/recent meetups first
 
     def __str__(self):
         return (f"[{self.pk}] {self.organizer} - {self.title} "
                 f"({self.start_datetime.strftime('%Y-%m-%d %H:%M')})")
 
     def clean(self):
+        """
+        Custom validation logic for the Meetup model.
+        Aggregates errors into a dictionary to display multiple issues at once.
+        """
         super().clean()
         errors = {}  # Dictionary to store all field-specific errors
 
-        # 1. Date Validation
+        # 1. Date Validation: Ensure event is not in the past
         if self.start_datetime and self.start_datetime < timezone.now():
             errors['start_datetime'] = "Meetup cannot be scheduled in the past"
 
-        # 2. URL Validation
+        # 2. URL Validation: Simple check for protocol prefix
         if self.online_link and not self.online_link.startswith((
                 "http://", "https://")):
             errors['online_link'] = "Online link must be a valid URL " \
                                     "starting with http or https"
 
-        # 3. Participants Validation
+        # 3. Participants Validation: Ensure count is a positive integer
         if self.max_participants is not None and self.max_participants < 1:
             errors['max_participants'] = "Max participants must be greater" \
                                          "than 0 or left empty"
 
-        # If the dictionary isn't empty, raise all errors at once
+        # If the dictionary isn't empty, raise all errors at once for the form
         if errors:
             raise ValidationError(errors)
 
@@ -84,17 +92,22 @@ class Meetup(models.Model):
 
     @property
     def end_datetime(self):
-        """Calculate meetup end time."""
+        """Calculate meetup end time by adding duration to start time."""
         return self.start_datetime + timezone.timedelta(
             minutes=self.duration_minutes
         )
 
     @property
     def is_past(self):
+        """Boolean check to see if the meetup has already started."""
         return self.start_datetime < timezone.now()
 
 
 class MeetupParticipation(models.Model):
+    """
+    Tracks relationship between users and meetups.
+    Handles the workflow for pending, approved, or rejected attendance.
+    """
     class Status(models.TextChoices):
         PENDING = "pending", "Pending approval"
         GOING = "going", "Going"
@@ -123,6 +136,7 @@ class MeetupParticipation(models.Model):
     approved_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
+        # Prevent a user from signing up for the same meetup multiple times
         unique_together = ("user", "meetup")
         ordering = ["-requested_at"]
 
@@ -142,4 +156,5 @@ class MeetupParticipation(models.Model):
 
     @property
     def is_approved(self):
+        """Helper to check if the user is no longer in 'Pending' status."""
         return self.status != self.Status.PENDING
