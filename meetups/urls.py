@@ -12,6 +12,14 @@ urlpatterns = [
          views.MeetupUpdateView.as_view(), name='meetup_update'),
     path('meetups/<int:pk>/delete/',
          views.MeetupDeleteView.as_view(), name='meetup_delete'),
+
+    path('meetup/<int:pk>/toggle-participation/',
+         views.ToggleParticipationView.as_view(), name='toggle_participation'),
+    path('participation/<int:pk>/approve/',
+         views.approve_participation, name='approve_participation'),
+    path('participation/<int:pk>/reject/',
+         views.reject_participation, name='reject_participation'),
+
     path('about/', TemplateView.as_view(template_name='about.html'),
          name='about'),
 ]

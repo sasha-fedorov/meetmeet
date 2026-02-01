@@ -13,7 +13,7 @@
       <div class="container text-center p-4">
         <h1 class="display-4 fw-bold">Explore Meetups</h1>
         <p class="lead px-2">Join local events or host your own community gathering.</p>
-        <a href="{% url 'meetup_create' %}" class="btn btn-primary btn-lg px-4"><i class="bi bi-plus-lg"></i> Create New Meetup</a>
+        <a href="{% url 'meetup_create' %}" class="btn btn-primary btn-lg px-4">Create New Meetup</a>
       </div>
     </div>
   </div>
@@ -35,17 +35,8 @@
               </div>
 
               <h2 class="card-title h5"><a href="{% url 'meetup_detail' meetup.pk %}" class="text-decoration-none text-dark">{{ meetup.title }}</a></h2>
-
-              <p class="card-text text-muted small mb-2">
-                <strong><i class="bi bi-calendar-event"></i></strong>
-                {{ meetup.start_datetime|date:'H:i, l d.m.y' }}
-              </p>
-
-              <p class="card-text text-muted small mb-3">
-                <strong><i class="bi bi-geo-alt"></i></strong>
-                {{ meetup.location_text|truncatechars:30 }}
-              </p>
-
+              <p class="card-text text-muted small mb-2">{{ meetup.start_datetime|date:'H:i, l d.m.y' }}</p>
+              <p class="card-text text-muted small mb-3">{{ meetup.location_text|truncatechars:30 }}</p>
               <p class="card-text">{{ meetup.description|truncatewords:15 }}</p>
             </div>
 
