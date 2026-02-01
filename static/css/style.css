@@ -7,6 +7,37 @@ body {
   font-style: normal;
 
   padding-bottom: 3rem;
+
+:root {
+  --bs-primary: #e440f7;
+  --bs-primary-darker: #cc5ed8;
+  --bs-primary-rgb: 111, 66, 193;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: var(--bs-primary-darker);
+  --bs-btn-hover-border-color: var(--bs-primary-darker);
+  --bs-btn-active-bg: var(--bs-primary-darker);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+
+  --bs-btn-hover-bg: var(--bs-primary-darker);
+  --bs-btn-hover-border-color: var(--bs-primary-darker);
+  --bs-btn-hover-color: #fff;
+
+  --bs-btn-active-bg: var(--bs-primary-darker);
+  --bs-btn-active-border-color: var(--bs-primary-darker);
+  --bs-btn-active-color: #fff;
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
 }
 
 .navbar-brand {
