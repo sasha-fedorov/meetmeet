@@ -49,6 +49,10 @@ nav .btn {
   width: 5rem;
 }
 
+.alert {
+  margin-top: 1rem;
+}
+
 .organaizer-pic {
   width: 48px;
   height: 48px;
