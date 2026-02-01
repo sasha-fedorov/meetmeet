@@ -49,6 +49,16 @@ nav .btn {
   width: 5rem;
 }
 
+.organaizer-pic {
+  width: 48px;
+  height: 48px;
+}
+
+.event-details-sticky {
+  top: 2rem;
+  z-index: 10;
+}
+
 #id_password_helptext {
   display: none !important;
 }

@@ -23,7 +23,7 @@
 
         <div class="d-flex align-items-center mb-4">
           <div class="flex-shrink-0">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">{{ meetup.organizer.username|slice:':1'|upper }}</div>
+            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center organaizer-pic">{{ meetup.organizer.username|slice:':1'|upper }}</div>
           </div>
           <div class="ms-3">
             <p class="mb-0 fw-bold">Hosted by {{ meetup.organizer.username }}</p>
@@ -35,12 +35,12 @@
 
         <section>
           <h3 class="h4 mb-3">About this meetup</h3>
-          <div class="lead" style="white-space: pre-wrap;">{{ meetup.description|linebreaks }}</div>
+          <div class="lead">{{ meetup.description|linebreaks }}</div>
         </section>
       </div>
 
       <div class="col-lg-4">
-        <div class="card shadow-sm sticky-top" style="top: 2rem; z-index: 10;">
+        <div class="card shadow-sm sticky-top event-details-sticky">
           <div class="card-body">
             <h4 class="h5 mb-4">Event Details</h4>
 
