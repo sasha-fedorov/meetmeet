@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+  About MeetMeet
+{% endblock %}
+
+{% block content %}
+  <div class="bg-primary text-white py-5 mb-5">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold">Connecting Communities</h1>
+      <p class="lead">MeetMeet is a simple, no-nonsense platform for hosting and joining local gatherings.</p>
+    </div>
+  </div>
+
+  <div class="container mb-5">
+    <div class="row g-4 py-5">
+      <div class="col-md-4 text-center">
+        <div class="feature-icon bg-light p-3 rounded-circle mb-3 d-inline-block">
+          <i class="bi bi-calendar-check text-primary h2"></i>
+        </div>
+        <h3>Organize</h3>
+        <p class="text-muted">Create a meetup in seconds. Set the time, location, and whether you want to approve guests manually or keep it open for everyone.</p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <div class="feature-icon bg-light p-3 rounded-circle mb-3 d-inline-block">
+          <i class="bi bi-people text-primary h2"></i>
+        </div>
+        <h3>Discover</h3>
+        <p class="text-muted">Browse upcoming events in your area. From tech talks to hiking groups, there's always something happening on MeetMeet.</p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <div class="feature-icon bg-light p-3 rounded-circle mb-3 d-inline-block">
+          <i class="bi bi-shield-lock text-primary h2"></i>
+        </div>
+        <h3>Manage</h3>
+        <p class="text-muted">Keep your events safe with host-only moderation. Approve requests and manage your guest list with a single click.</p>
+      </div>
+    </div>
+
+    <hr class="my-5" />
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="text-center mb-4">What can you use MeetMeet for?</h2>
+        <ul class="list-group list-group-flush shadow-sm rounded">
+          <li class="list-group-item py-3">
+            <i class="bi bi-check2-circle text-success me-2"></i> <strong>Tech Meetups:</strong> Share knowledge and network with local developers.
+          </li>
+          <li class="list-group-item py-3">
+            <i class="bi bi-check2-circle text-success me-2"></i> <strong>Hobby Groups:</strong> Book clubs, board game nights, or photography walks.
+          </li>
+          <li class="list-group-item py-3">
+            <i class="bi bi-check2-circle text-success me-2"></i> <strong>Study Sessions:</strong> Find peers to tackle that new course or project with.
+          </li>
+          <li class="list-group-item py-3">
+            <i class="bi bi-check2-circle text-success me-2"></i> <strong>Social Gatherings:</strong> Coffee chats, happy hours, or community dinners.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid bg-light py-5 mt-5 border-top">
+    <div class="container text-center">
+      <h3 class="mb-3">Ready to get started?</h3>
+      <a href="{% url 'account_signup' %}" class="btn btn-primary px-4 me-2">Join Now</a>
+      <a href="{% url 'meetup_list' %}" class="btn btn-outline-secondary px-4">Browse Events</a>
+    </div>
+  </div>
+{% endblock %}
