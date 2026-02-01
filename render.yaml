@@ -1,0 +1,22 @@
+databases:
+  - name: postgresql
+    plan: free
+    databaseName: github_kfjl
+    user: github_kfjl_user
+
+services:
+  - type: web
+    plan: free
+    name: meetmeet
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn meetmeet.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: github_kfjl
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
