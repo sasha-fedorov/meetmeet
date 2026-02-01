@@ -49,7 +49,7 @@ class Meetup(models.Model):
 
     class Meta:
         """Default sorting field"""
-        ordering = ["start_datetime"]
+        ordering = ["-start_datetime"]
 
     def __str__(self):
         return (f"[{self.pk}] {self.organizer} - {self.title} "
