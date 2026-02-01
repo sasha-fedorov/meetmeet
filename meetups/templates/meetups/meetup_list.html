@@ -1,62 +1,99 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% load django_bootstrap5 %}
+
 {% block head_title %}
   Home
 {% endblock %}
 
 {% block content %}
-  <header>
-    <h1>Meetups</h1>
-    <a href="{% url 'meetup_create' %}">+ Create New</a>
-  </header>
-
-  <hr />
-
-  {% for meetup in meetups %}
-    <div>
-      <h3><a href="{% url 'meetup_detail' meetup.pk %}">{{ meetup.title }}</a></h3>
-      <p>
-        <strong>Date:</strong> {{ meetup.start_datetime|date:' H:i, l d.m.y' }}
-      </p>
-      <p>
-        <strong>Location:</strong> {{ meetup.location_text|truncatechars:30 }}
-      </p>
-
-      <div>
-        {% if meetup.is_open %}
-          <span>Open Access</span>
-        {% else %}
-          <span>Approval Required</span>
-        {% endif %}
-      </div>
-
-      <p>{{ meetup.description|truncatewords:20 }}</p>
-
-      <div>
-        <a href="{% url 'meetup_detail' meetup.pk %}">View Details</a>
+  <div id="banner-container">
+    <div class="py-5 mb-4">
+      <div class="container banner-text-container text-center p-4">
+        <h1 class="display-4 fw-bold">Explore Meetups</h1>
+        <p class="lead px-2">Join local events or host your own community gathering.</p>
+        <a href="{% url 'meetup_create' %}" class="btn btn-primary btn-lg px-4"><i class="bi bi-plus-lg"></i> Create New Meetup</a>
       </div>
     </div>
-  {% empty %}
-    <div>
-      <p>No meetups found. Why not host one?</p>
-      <a href="{% url 'meetup_create' %}">Create a Meetup</a>
-    </div>
-  {% endfor %}
+  </div>
 
-  {% if is_paginated %}
-    <nav aria-label="Page navigation">
-      <ul>
-        {% if page_obj.has_previous %}
-          <li>
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+  <div class="container">
+    <div class="row g-4">
+      {% for meetup in meetups %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm hover-shadow transition">
+            <div class="card-body">
+              <div class="mb-2">
+                {% if meetup.is_past %}
+                  <span class="badge bg-light-subtle text-secondary border border-secondary">Past event</span>
+                {% elif meetup.is_open %}
+                  <span class="badge bg-success-soft text-success border border-success">Open Access</span>
+                {% else %}
+                  <span class="badge bg-warning-soft text-warning border border-warning">Approval Required</span>
+                {% endif %}
+              </div>
+
+              <h2 class="card-title h5"><a href="{% url 'meetup_detail' meetup.pk %}" class="text-decoration-none text-dark">{{ meetup.title }}</a></h2>
+
+              <p class="card-text text-muted small mb-2">
+                <strong><i class="bi bi-calendar-event"></i></strong>
+                {{ meetup.start_datetime|date:'H:i, l d.m.y' }}
+              </p>
+
+              <p class="card-text text-muted small mb-3">
+                <strong><i class="bi bi-geo-alt"></i></strong>
+                {{ meetup.location_text|truncatechars:30 }}
+              </p>
+
+              <p class="card-text">{{ meetup.description|truncatewords:15 }}</p>
+            </div>
+
+            <div class="card-footer bg-transparent border-top-0 pb-3">
+              <a href="{% url 'meetup_detail' meetup.pk %}" class="btn btn-outline-primary btn-sm w-100">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12 text-center py-5">
+          <div class="card py-5 border-dashed">
+            <p class="text-muted">No meetups found. Why not host one?</p>
+            <div>
+              <a href="{% url 'meetup_create' %}" class="btn btn-primary">Create a Meetup</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+      <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">Previous</span>
+            </li>
+          {% endif %}
+
+          <li class="page-item active">
+            <span class="page-link">{{ page_obj.number }}</span>
           </li>
-        {% endif %}
-        {% if page_obj.has_next %}
-          <li>
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
-          </li>
-        {% endif %}
-      </ul>
-    </nav>
-  {% endif %}
+
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">Next</span>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
 {% endblock %}
