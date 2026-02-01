@@ -53,6 +53,16 @@ nav .btn {
   display: none !important;
 }
 
+#banner-container {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+    url("../images/meetup_list_bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
 * {
   border-radius: 0 !important;
 }
