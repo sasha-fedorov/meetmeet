@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="MeetMeet is a community-centric event management platform designed to bridge the gap between local organizers and attendees. " />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MeetMeet is a community-centric event management platform designed to bridge the gap between local organizers and attendees. ">
 
     <title>
       MeetMeet -{% block head_title %}
@@ -15,19 +15,19 @@
     </title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/svg+xml" sizes="any" href="{% static 'images/favicon.svg' %}" />
+    <link rel="shortcut icon" type="image/svg+xml" sizes="any" href="{% static 'images/favicon.svg' %}">
 
     <!-- Botstrap CSS -->
     {% bootstrap_css %}
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand navbar-side-el-width me-0" href="{% url 'meetup_list' %}">
-          <img src="{% static 'images/favicon.svg' %}" alt="" width="24" height="24" class="d-inline-block align-text-top" />
+          <img src="{% static 'images/favicon.svg' %}" alt="" width="24" height="24" class="d-inline-block align-text-top">
           MeetMeet
         </a>
 
