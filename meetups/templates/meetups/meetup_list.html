@@ -34,10 +34,10 @@
                 {% endif %}
               </div>
 
-              <h2 class="card-title h5"><a href="{% url 'meetup_detail' meetup.pk %}" class="text-decoration-none text-dark">{{ meetup.title }}</a></h2>
+              <h2 class="card-title h5"><a href="{% url 'meetup_detail' meetup.pk %}" class="text-decoration-none text-dark">{{ meetup.title|truncatechars:70 }}</a></h2>
               <p class="card-text text-muted small mb-2">{{ meetup.start_datetime|date:'H:i, l d.m.y' }}</p>
-              <p class="card-text text-muted small mb-3">{{ meetup.location_text|truncatechars:30 }}</p>
-              <p class="card-text">{{ meetup.description|truncatewords:15 }}</p>
+              <p class="card-text text-muted small mb-3">{{ meetup.location_text|truncatechars:25 }}</p>
+              <p class="card-text">{{ meetup.description|truncatewords:15|truncatechars:150}}</p>
             </div>
 
             <div class="card-footer bg-transparent border-top-0 pb-3">
