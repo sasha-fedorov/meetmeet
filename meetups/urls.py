@@ -3,6 +3,9 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 urlpatterns = [
+    # Used by UptimeRobot to prevent Render Free Tier from sleeping
+    path('livez/', views.livez, name='livez_probe'),
+
     # General List and Detail
     path('', views.MeetupsListView.as_view(), name='meetup_list'),
     path('meetups/<int:pk>/',

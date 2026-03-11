@@ -2,12 +2,22 @@ from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views import View
 from django.views.generic import DetailView, ListView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from .models import Meetup, MeetupParticipation
+
+
+def livez(request):
+    """
+    Liveness probe for monitoring services (UptimeRobot, Render, etc.).
+    Returns a simple 200 OK to indicate the application process is running.
+    This view is intentionally lightweight to minimize resource usage.
+    """
+    return HttpResponse("OK", content_type="text/plain")
 
 
 class MeetupsListView(ListView):
