@@ -46,13 +46,28 @@
                 class="btn btn-secondary">
                 Cancel
               </a>
+
+              {% if object %}
+                <button class="btn btn-danger ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#confirmDeleteSection" aria-expanded="false" aria-controls="confirmDeleteSection">Delete Meetup</button>
+              {% endif %}
             </div>
           </form>
+
           {% if object %}
-            <form action="{% url 'meetup_delete' object.pk %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger my-2">Delete</button>
-            </form>
+            <div class="collapse mt-3" id="confirmDeleteSection">
+              <div class="d-flex align-items-center justify-content-between alert alert-danger border-danger">
+                <span><strong>Are you sure?</strong> This action is permanent.</span>
+
+                <div class="d-flex gap-2">
+                  <form action="{% url 'meetup_delete' object.pk %}" method="post" class="m-0">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete</button>
+                  </form>
+
+                  <button class="btn btn-sm btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#confirmDeleteSection">No, Cancel</button>
+                </div>
+              </div>
+            </div>
           {% endif %}
         </div>
       </div>
