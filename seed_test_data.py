@@ -23,8 +23,7 @@ print(f"Current time: {now}")
 
 # Clean previous test data
 User.objects.filter(username__startswith="testuser_").delete()
-Meetup.objects.filter(title__endswith=".").delete()
-
+print("Previous test data deleted")
 
 users = []
 
