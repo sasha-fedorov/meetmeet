@@ -93,6 +93,12 @@ class MeetupFormMixin(LoginRequiredMixin):
     def form_valid(self, form):
         """Automatically set the current user as the meetup organizer."""
         form.instance.organizer = self.request.user
+
+        if self.object:
+            messages.success(self.request, "Meetup was successfully updated.")
+        else:
+            messages.success(self.request, "Meetup was successfully created.")
+
         return super().form_valid(form)
 
 
@@ -127,6 +133,10 @@ class MeetupDeleteView(DeleteView):
     def get_queryset(self):
         """Ensure users can only delete meetups they organized."""
         return self.model.objects.filter(organizer=self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "Meetup was successfully deleted.")
+        return self.delete(request, *args, **kwargs)
 
 
 class ToggleParticipationView(LoginRequiredMixin, View):
