@@ -1,0 +1,18 @@
+{% extends 'errors/base_error.html' %}
+
+{% block error_title %}
+  500 Internal Server Error
+{% endblock %}
+
+{% block error_code %}
+  500
+{% endblock %}
+
+{% block error_type %}
+  Internal Server Error
+{% endblock %}
+
+{% block error_message %}
+  Something went wrong on our end. <br />
+  We are working to fix it!
+{% endblock %}
