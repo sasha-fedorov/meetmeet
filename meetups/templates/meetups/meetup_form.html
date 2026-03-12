@@ -46,12 +46,14 @@
                 class="btn btn-secondary">
                 Cancel
               </a>
-
-              {% if object %}
-                <a href="{% url 'meetup_delete' object.pk %}" class="btn btn-danger ms-auto">Delete</a>
-              {% endif %}
             </div>
           </form>
+          {% if object %}
+            <form action="{% url 'meetup_delete' object.pk %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger my-2">Delete</button>
+            </form>
+          {% endif %}
         </div>
       </div>
     </div>
