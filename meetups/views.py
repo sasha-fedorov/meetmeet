@@ -108,6 +108,13 @@ class MeetupCreateView(MeetupFormMixin, CreateView):
     fields = ['title', 'description', 'start_datetime', 'duration_minutes',
               'location_text', 'online_link', 'is_open', 'max_participants']
 
+    def handle_no_permission(self):
+        """Add a message and redirect when a user is not authorized."""
+        if not self.request.user.is_authenticated:
+            messages.warning(
+                self.request, "Please log in to perform this action.")
+            return super().handle_no_permission()
+
 
 class MeetupUpdateView(MeetupFormMixin, UserPassesTestMixin, UpdateView):
     """View to handle editing an existing Meetup (Organizer only)."""
@@ -121,8 +128,14 @@ class MeetupUpdateView(MeetupFormMixin, UserPassesTestMixin, UpdateView):
         return obj.organizer == self.request.user
 
     def handle_no_permission(self):
-        """Redirect unauthorized users back to the list."""
-        return redirect('meetup_list')
+        """Add a message and redirect when a user is not authorized."""
+        messages.error(
+            self.request, "You are not authorized to perform this action.")
+        if self.request.user.is_authenticated:
+            pk = self.kwargs.get('pk')
+            return redirect('meetup_detail', pk=pk)
+        else:
+            return super().handle_no_permission()
 
 
 class MeetupDeleteView(DeleteView):
@@ -141,9 +154,18 @@ class MeetupDeleteView(DeleteView):
 
 class ToggleParticipationView(LoginRequiredMixin, View):
     """
-    A POST-only view that handles joining or leaving a meetup.
+    A view that handles joining or leaving a meetup.
     Creates or deletes MeetupParticipation records.
     """
+
+    def handle_no_permission(self):
+        """Add a message for unauthenticated users before redirecting."""
+        messages.info(self.request, "Please log in to join this meetup.")
+        return super().handle_no_permission()
+
+    def get(self, request, pk):
+        """Handle redirects after login to avoid 405 errors."""
+        return redirect('meetup_detail', pk=pk)
 
     def post(self, request, pk):
         meetup = get_object_or_404(Meetup, pk=pk)
@@ -162,8 +184,12 @@ class ToggleParticipationView(LoginRequiredMixin, View):
             if participation.status in [MeetupParticipation.Status.GOING,
                                         MeetupParticipation.Status.PENDING]:
                 participation.delete()
-                messages.info(
-                    request, "Your request or attendance has been cancelled.")
+                if participation.status is MeetupParticipation.Status.GOING:
+                    messages.info(request,
+                                  "Your attendance has been cancelled.")
+                else:
+                    messages.info(request,
+                                  "Your request has been cancelled.")
             else:
                 # Re-joining logic for someone who was previously "Not Going"
                 participation.status = (
@@ -181,8 +207,12 @@ class ToggleParticipationView(LoginRequiredMixin, View):
             )
             MeetupParticipation.objects.create(
                 user=request.user, meetup=meetup, status=status)
-            messages.success(
-                request, "Success! You've joined or requested to join.")
+            if status == MeetupParticipation.Status.GOING:
+                messages.success(
+                    request, "Success! You've joined this meetup.")
+            else:
+                messages.info(
+                    request, "You've requested to join this meetup.")
 
         return redirect('meetup_detail', pk=pk)
 
