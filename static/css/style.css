@@ -80,7 +80,7 @@ nav .btn {
   display: none !important;
 }
 
-#banner-container {
+#meetups-top-container {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
     url("../images/meetup_list_bg.webp");
