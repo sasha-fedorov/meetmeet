@@ -108,7 +108,18 @@
       <div class="col-lg-4">
         <div class="card shadow-sm sticky-top event-details-sticky p-2">
           <div class="card-body">
-            <h4 class="h5 mb-4">Event Details</h4>
+            <div class="d-flex justify-content-between mb-4">
+              <h4 class="h5">Event Details</h4>
+              <div>
+                {% if meetup.is_past %}
+                  <span class="badge bg-light-subtle text-secondary border border-secondary">Past event</span>
+                {% elif meetup.is_open %}
+                  <span class="badge bg-success-soft text-success border border-success">Open Access</span>
+                {% else %}
+                  <span class="badge bg-warning-soft text-warning border border-warning">Approval Required</span>
+                {% endif %}
+              </div>
+            </div>
 
             <div class="d-flex mb-3">
               <div>
