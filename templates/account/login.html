@@ -31,7 +31,10 @@
             </form>
 
             <div class="text-center mt-4">
-              <small class="small text-muted">Don't have an account? <a href="{% url 'account_signup' %}">Register</a></small>
+              <small class="small text-muted">
+                Don't have an account?
+                <a href="{% url 'account_signup' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}">Register</a>
+              </small>
             </div>
           </div>
         </div>
