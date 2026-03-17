@@ -90,6 +90,15 @@ class Meetup(models.Model):
         """ Return the URL for a specific meetup detail page """
         return reverse('meetup_detail', kwargs={'pk': self.pk})
 
+    def is_full(self):
+        """Check if the meetup has reached its capacity."""
+        if self.max_participants is None:
+            return False
+        # Count only participants who are actually "GOING"
+        return self.participations.filter(
+            status=MeetupParticipation.Status.GOING
+        ).count() >= self.max_participants
+
     @property
     def end_datetime(self):
         """Calculate meetup end time by adding duration to start time."""

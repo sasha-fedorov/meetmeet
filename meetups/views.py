@@ -179,6 +179,16 @@ class ToggleParticipationView(LoginRequiredMixin, View):
             user=request.user, meetup=meetup
         ).first()
 
+        is_joining = not participation or participation.status not in [
+            MeetupParticipation.Status.GOING,
+            MeetupParticipation.Status.PENDING
+        ]
+
+        if is_joining and meetup.is_full():
+            messages.error(
+                request, "This meetup has reached the participants limit.")
+            return redirect('meetup_detail', pk=pk)
+
         if participation:
             # If user is already "Going" or "Pending", toggle means "Leave"
             if participation.status in [MeetupParticipation.Status.GOING,
@@ -221,12 +231,18 @@ class ToggleParticipationView(LoginRequiredMixin, View):
 def approve_participation(request, pk):
     """Function-based view for organizers to approve requests."""
     participation = get_object_or_404(MeetupParticipation, pk=pk)
+    meetup = participation.meetup
 
     # Security check: Only the organizer of the meetup can approve
     if participation.meetup.organizer == request.user:
-        participation.approve()
-        messages.success(
-            request, f"Approved {participation.user.username}'s request.")
+        if meetup.is_full():
+            messages.error(
+                request,
+                "Cannot approve: Meetup has reached the participants limit.")
+        else:
+            participation.approve()
+            messages.success(
+                request, f"Approved {participation.user.username}'s request.")
     else:
         messages.error(
             request, "You are not authorized to perform this action.")
