@@ -39,18 +39,92 @@ The work was organized using a hierarchical structure to maintain scope and clar
 
 The design process began with a "Content-First" approach, identifying the necessary data (Titles, Dates, Status) before determining the layout. The goal was to reduce cognitive load by presenting the most critical information—such as event status and "Call to Action" buttons—in prominent positions.
 
-<!-- ### Wireframes
-
-TODO: Add Wireframes
+## Wireframes
 
 Wireframes were created using Canva to visualize the layout for mobile and desktop views prior to writing code.
 
-- **Base Layout:** ![Base Wireframe](documentation/images/wireframe_base.png)
-- **Meetup List:** ![List Wireframe](documentation/images/wireframe_list.png)
-- **Meetup Detail:** ![Detail Wireframe](documentation/images/wireframe_detail.png)
-- **Forms (Create/Edit):** ![Form Wireframe](documentation/images/wireframe_form.png)
-- **Authentication (Login/Signup):** ![Auth Wireframe](documentation/images/wireframe_auth.png)
-- **404 Error Page:** ![404 Wireframe](documentation/images/wireframe_404.png) -->
+<details>
+  <summary><b>Click to expand wireframes</b></summary>
+  <table >
+    <tr>
+      <th>Desktop</th>
+      <th>Tablet</th>
+      <th>Mobile</th>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Meetup list (Home page)</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/meetup_list_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/meetup_list_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/meetup_list_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Meetup Form</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/meetup_form_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/meetup_form_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/meetup_form_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Meetup Details</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/meetup_detail_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/meetup_detail_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/meetup_detail_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Meetup managment</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/meetup_manage_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/meetup_manage_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/meetup_manage_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Registration</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/account_register_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/account_register_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/account_register_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Login</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/account_login_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/account_login_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/account_login_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Logout</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/account_logout_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/account_logout_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/account_logout_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>About</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/about_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/about_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/about_mobile.png" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><b>Error code pages</b></td>
+    </tr>
+    <tr>
+      <td width="58%"><img src="documentation/images/wireframes/error_desktop.png" /></td>
+      <td width="25%" ><img src="documentation/images/wireframes/error_tablet.png" /></td>
+      <td width="17%" ><img src="documentation/images/wireframes/error_mobile.png" /></td>
+    </tr>
+  </table>
+</details>
 
 <!-- ### Design System
 
