@@ -23,7 +23,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm pe-1">
       <div class="container-fluid">
         <a class="navbar-brand navbar-side-el-width me-0" href="{% url 'meetup_list' %}">
@@ -64,7 +64,7 @@
       </div>
     </nav>
 
-    <main class="pb-4 text-break">
+    <main class="text-break my-auto">
       <div class="container">
         {% bootstrap_messages %}
       </div>
