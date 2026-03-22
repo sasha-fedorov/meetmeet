@@ -64,11 +64,11 @@
       </div>
     </nav>
 
-    <main class="text-break my-auto">
-      <div class="container">
-        {% bootstrap_messages %}
-      </div>
+    <aside aria-label="Notifications" role="complementary" class="container">
+      {% bootstrap_messages %}
+    </aside>
 
+    <main class="text-break my-auto">
       {% block content %}
 
       {% endblock %}
