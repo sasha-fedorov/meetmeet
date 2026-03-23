@@ -1,0 +1,41 @@
+// https://dbdiagram.io/d
+
+Table users {
+  id integer [primary key]
+  name string
+  email string
+  password varchar(128)
+  is_superuser boolean
+}
+
+Table meetups {
+  id bigint [primary key]
+  organizer_id integer
+  title varchar(200)
+  description text
+  is_open boolean
+  max_participants integer
+  start_datetime timestamp
+  duration_minutes integer
+  location_text varchar(255)
+  online_link varchar(200)
+}
+
+Table participation {
+  id bigint [primary key]
+  meetup_id bigint
+  user_id integer
+  status varchar(20)
+  requested_at timestamp
+  approved_at timestamp
+}
+
+// Relationships
+// A user organizes many meetups
+Ref: users.id < meetups.organizer_id 
+
+// A user can have many participation entries
+Ref: users.id < participation.user_id
+
+// A meetup can have many participation entries
+Ref: meetups.id < participation.meetup_id

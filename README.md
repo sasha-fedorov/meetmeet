@@ -4,14 +4,13 @@ MeetMeet is a community-centric event management platform designed to bridge the
 
 [View the Live Project on Render](https://meetmeet.onrender.com/)
 
+
 ## Responsive Design
 
 The application is fully responsive, ensuring a consistent user experience across desktop, tablet, and mobile devices.
 
 ![MeetMeet Responsive Mockup](documentation/images/mock.webp)
-_Note: This image showcases the application's layout adaptability across various screen sizes._
 
----
 
 ## Agile Methodology
 
@@ -31,7 +30,6 @@ The work was organized using a hierarchical structure to maintain scope and clar
   - **Acceptance Criteria:** Every User Story included specific criteria that defined the "Definition of Done," ensuring functional requirements were met before the task was closed.
   - **MoSCoW Prioritization:** Tasks were prioritized into "Must Have" (MVP) and "Won't Have" (Future Features) to strictly adhere to the project deadline.
 
----
 
 ## UX Planning
 
@@ -141,7 +139,7 @@ The palette uses a high-contrast primary pink for actions, with distinct status 
   - **800 (ExtraBold):** Used for the Navbar Brand and major headings to establish hierarchy.
 
 ![Color Palette](documentation/images/typography.png)
----
+
 
 ## Features Implemented and Futures
 
@@ -165,7 +163,6 @@ The palette uses a high-contrast primary pink for actions, with distinct status 
 - **Participant Limits:** Automatically closing an event when `max_participants` is reached.
 - **Search & Filter:** Filtering events by date range or location.
 
----
 
 ## Data Model and Schema
 
@@ -177,13 +174,14 @@ The project utilized a "Model-First" approach. The relational database structure
 
 Django's migration system was utilized to propagate changes from the Python models to the PostgreSQL database schema. This allowed for version-controlled database evolution throughout the development lifecycle.
 
-<!-- ### Database Schema
+### Database Schema
 
-TODO: Add Database Diagram
+ERDs provide a visual blueprint of your database structure throughout the entire development lifecycle.
 
-![UML Database Diagram](documentation/images/schema_diagram.png) -->
+![Database Diagram](documentation/images/schema_diagram.png)
 
----
+**Key Logic:** A User owns the meetups they create and manages the participation requests for them, while participating in others' meetups through the participation table.
+
 
 ## Validation
 
@@ -206,7 +204,6 @@ Google Chrome Lighthouse was used to test Performance, Accessibility, Best Pract
 
 - **Lighthouse Score:** ![Lighthouse Score](documentation/images/lighthouse_score.png) -->
 
----
 
 ## Testing
 
@@ -244,7 +241,6 @@ Manual testing was conducted throughout the development process and after deploy
 **Known Bugs**
 -->
 
----
 
 ## Libraries, Languages, and Tools
 
@@ -279,7 +275,6 @@ Manual testing was conducted throughout the development process and after deploy
 - **[Coolors](https://coolors.co/)** – Color palette generation.
 <!-- - **[dbdiagram.io](https://dbdiagram.io/)** – Database schema visualization. -->
 
----
 
 ## Deployment & Local Development
 
@@ -346,7 +341,6 @@ To fork the **MeetMeet** repository to your own GitHub account:
 2. Go to the repository: **[sasha-fedorov/meetmeet](https://github.com/sasha-fedorov/meetmeet)**.
 3. Click the **Fork** button in the top right corner to create a copy under your own account.
 
----
 
 ## Credits
 
