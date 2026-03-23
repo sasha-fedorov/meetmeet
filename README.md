@@ -4,13 +4,11 @@ MeetMeet is a community-centric event management platform designed to bridge the
 
 [View the Live Project on Render](https://meetmeet.onrender.com/)
 
-
 ## Responsive Design
 
 The application is fully responsive, ensuring a consistent user experience across desktop, tablet, and mobile devices.
 
 ![MeetMeet Responsive Mockup](documentation/images/mock.webp)
-
 
 ## Agile Methodology
 
@@ -30,7 +28,6 @@ The work was organized using a hierarchical structure to maintain scope and clar
   - **Acceptance Criteria:** Every User Story included specific criteria that defined the "Definition of Done," ensuring functional requirements were met before the task was closed.
   - **MoSCoW Prioritization:** Tasks were prioritized into "Must Have" (MVP) and "Won't Have" (Future Features) to strictly adhere to the project deadline.
 
-
 ## UX Planning
 
 ### Planning Description
@@ -43,7 +40,7 @@ Wireframes were created using Canva to visualize the layout for mobile and deskt
 
 <details>
   <summary><b>Click to expand wireframes</b></summary>
-  <table >
+  <table>
     <tr>
       <th>Desktop</th>
       <th>Tablet</th>
@@ -127,6 +124,7 @@ Wireframes were created using Canva to visualize the layout for mobile and deskt
 ### Design System
 
 #### Color Palette
+
 The palette uses a high-contrast primary pink for actions, with distinct status colors (Green/Success, Red/Danger, Yellow/Warning) to provide immediate feedback.
 
 ![Color Palette](documentation/images/color_palette.png)
@@ -139,7 +137,6 @@ The palette uses a high-contrast primary pink for actions, with distinct status 
   - **800 (ExtraBold):** Used for the Navbar Brand and major headings to establish hierarchy.
 
 ![Color Palette](documentation/images/typography.png)
-
 
 ## Features Implemented and Futures
 
@@ -163,7 +160,6 @@ The palette uses a high-contrast primary pink for actions, with distinct status 
 - **Participant Limits:** Automatically closing an event when `max_participants` is reached.
 - **Search & Filter:** Filtering events by date range or location.
 
-
 ## Data Model and Schema
 
 ### Data Model Strategy
@@ -182,7 +178,6 @@ ERDs provide a visual blueprint of your database structure throughout the entire
 
 **Key Logic:** A User owns the meetups they create and manages the participation requests for them, while participating in others' meetups through the participation table.
 
-
 ## Validation
 
 ### Python Validation
@@ -196,14 +191,53 @@ TODO: Add Validation Screenschoots
 The deployed application was validated using the W3C Markup Validation Service and the W3C CSS Validation Service.
 
 - **HTML Validation:** ![HTML Validation Screenshot](documentation/images/validation_html.png)
-- **CSS Validation:** ![CSS Validation Screenshot](documentation/images/validation_css.png)
+- **CSS Validation:** ![CSS Validation Screenshot](documentation/images/validation_css.png) -->
 
 ### Lighthouse Performance
 
 Google Chrome Lighthouse was used to test Performance, Accessibility, Best Practices, and SEO.
 
-- **Lighthouse Score:** ![Lighthouse Score](documentation/images/lighthouse_score.png) -->
-
+<details>
+  <summary><b>Click to expand Lighthouse report scores</b></summary>
+  <table>
+    <tr>
+      <th>Page</th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <td width="30%">Meetup List</td>
+      <td width="70%"><img src="documentation/images/lighthouse/meetup_list.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">Meetup Detail</td>
+      <td width="70%"><img src="documentation/images/lighthouse/meetup_detail.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">Meetup Form</td>
+      <td width="70%"><img src="documentation/images/lighthouse/meetup_form.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">Account Register</td>
+      <td width="70%"><img src="documentation/images/lighthouse/account_register.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">Account Login</td>
+      <td width="70%"><img src="documentation/images/lighthouse/account_login.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">Account Logout</td>
+      <td width="70%"><img src="documentation/images/lighthouse/account_logout.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">About</td>
+      <td width="70%"><img src="documentation/images/lighthouse/about.png"/></td>
+    </tr>
+    <tr>
+      <td width="30%">Error Page</td>
+      <td width="70%"><img src="documentation/images/lighthouse/error.png"/></td>
+    </tr>
+  </table>
+</details>
 
 ## Testing
 
@@ -241,7 +275,6 @@ Manual testing was conducted throughout the development process and after deploy
 **Known Bugs**
 -->
 
-
 ## Libraries, Languages, and Tools
 
 ### Languages & Frameworks
@@ -273,8 +306,7 @@ Manual testing was conducted throughout the development process and after deploy
 - **[ChatGPT](https://chat.openai.com/)** – Used as a search tool and syntax reference.
 - **[Gemini](https://gemini.google.com/)** – Used for documentation structure, logic troubleshooting, and content generation.
 - **[Coolors](https://coolors.co/)** – Color palette generation.
-<!-- - **[dbdiagram.io](https://dbdiagram.io/)** – Database schema visualization. -->
-
+- **[dbdiagram.io](https://dbdiagram.io/)** – Database schema visualization.
 
 ## Deployment & Local Development
 
@@ -340,7 +372,6 @@ To fork the **MeetMeet** repository to your own GitHub account:
 1. Log in (or sign up) to GitHub.
 2. Go to the repository: **[sasha-fedorov/meetmeet](https://github.com/sasha-fedorov/meetmeet)**.
 3. Click the **Fork** button in the top right corner to create a copy under your own account.
-
 
 ## Credits
 
