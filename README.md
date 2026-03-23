@@ -39,7 +39,7 @@ The work was organized using a hierarchical structure to maintain scope and clar
 
 The design process began with a "Content-First" approach, identifying the necessary data (Titles, Dates, Status) before determining the layout. The goal was to reduce cognitive load by presenting the most critical information—such as event status and "Call to Action" buttons—in prominent positions.
 
-## Wireframes
+### Wireframes
 
 Wireframes were created using Canva to visualize the layout for mobile and desktop views prior to writing code.
 
@@ -126,23 +126,21 @@ Wireframes were created using Canva to visualize the layout for mobile and deskt
   </table>
 </details>
 
-<!-- ### Design System
+### Design System
 
-TODO: Add colorpalette
-
-**Color Palette**
+#### Color Palette
 The palette uses a high-contrast primary pink for actions, with distinct status colors (Green/Success, Red/Danger, Yellow/Warning) to provide immediate feedback.
-![Color Palette](documentation/images/color_palette.png) -->
 
-<!-- **Typography**
+![Color Palette](documentation/images/color_palette.png)
 
-TODO: Add Typography
+#### Typography
 
 - **Primary Font:** [DM Sans](https://fonts.google.com/specimen/DM+Sans)
 - **Weights:**
   - **400 (Regular):** Used for body text and descriptions for readability.
-  - **800 (ExtraBold):** Used for the Navbar Brand and major headings to establish hierarchy. -->
+  - **800 (ExtraBold):** Used for the Navbar Brand and major headings to establish hierarchy.
 
+![Color Palette](documentation/images/typography.png)
 ---
 
 ## Features Implemented and Futures
@@ -278,8 +276,8 @@ Manual testing was conducted throughout the development process and after deploy
 - **[GitHub](https://github.com/)** – Code repository and project board hosting.
 - **[ChatGPT](https://chat.openai.com/)** – Used as a search tool and syntax reference.
 - **[Gemini](https://gemini.google.com/)** – Used for documentation structure, logic troubleshooting, and content generation.
-<!-- - **[Coolors](https://coolors.co/)** – Color palette generation.
-- **[dbdiagram.io](https://dbdiagram.io/)** – Database schema visualization. -->
+- **[Coolors](https://coolors.co/)** – Color palette generation.
+<!-- - **[dbdiagram.io](https://dbdiagram.io/)** – Database schema visualization. -->
 
 ---
 
