@@ -31,10 +31,10 @@
           </div>
         </div>
 
-        <hr class="my-4" />
+        <hr class="my-4">
 
         <section>
-          <h3 class="h4 mb-3">About this meetup</h3>
+          <h2 class="h4 mb-3">About this meetup</h2>
 
           {% if request.user == meetup.organizer %}
             <button class="btn text-white border border-primary bg-primary" type="button" data-bs-toggle="collapse" data-bs-target="#event-description" aria-expanded="false" aria-controls="event-description">Show meetup Description</button>
@@ -50,7 +50,7 @@
           <div class="mt-5">
             <div class="card border-primary shadow-sm">
               <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 small text-uppercase">Organizer Dashboard</h5>
+                <h3 class="mb-0 small text-uppercase">Organizer Dashboard</h3>
                 <span class="badge bg-white text-primary">{{ meetup.participations.all.count }} Total</span>
               </div>
 
@@ -116,7 +116,7 @@
         <div class="card shadow-sm sticky-top event-details-sticky p-2">
           <div class="card-body">
             <div class="d-flex justify-content-between mb-4">
-              <h4 class="h5">Event Details</h4>
+              <h3 class="h5">Event Details</h3>
               <div>
                 {% if meetup.is_past %}
                   <span class="badge bg-light-subtle text-secondary border border-secondary">Past event</span>
@@ -161,7 +161,7 @@
               </div>
             {% endif %}
 
-            <hr />
+            <hr>
 
             <div class="d-grid gap-2">
               <form action="{% url 'toggle_participation' meetup.pk %}" method="post" class="d-grid gap-2">
