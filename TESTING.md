@@ -4,7 +4,17 @@
 
 ### Python Validation
 
-Code adherence to PEP8 standards was maintained during development using the `autopep8` extension for VS Code; no errors remain in the final project.
+To ensure the highest code quality and adherence to PEP 8 standards, this project was validated using two layers of linting:
+
+- Real-time Linting: The Flake8 extension for VS Code was utilized throughout the development process for immediate feedback.
+- Project-wide Audit: A final, comprehensive validation was performed by running the flake8 package directly in the terminal across the entire codebase.
+
+A custom .flake8 configuration was implemented to focus specifically on project logic while excluding external dependencies (such as the virtual environment and auto-generated Django migrations).
+
+The final audit confirms zero PEP 8 violations.
+
+![Validation Result with config](documentation/images/validation/python.png)
+
 
 ### HTML Validation
 
