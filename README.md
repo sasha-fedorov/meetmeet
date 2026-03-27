@@ -2,13 +2,17 @@
 
 MeetMeet is a community-centric event management platform designed to bridge the gap between local organizers and attendees. Built with a focus on ease of use and mobile-first design, MeetMeet allows users to discover upcoming events, manage their own gatherings, and interact with their community through a streamlined, secure interface.
 
+As an active member of several local communities, I saw firsthand how time-consuming and fragmented organizing local events can be. MeetMeet was created to simplify that process — helping organizers create, manage and promote events more easily, and making it simpler for attendees to discover, RSVP and participate.
+
 [View the Live Project on Render](https://meetmeet.onrender.com/)
+
 
 ## Responsive Design
 
 The application is fully responsive, ensuring a consistent user experience across desktop, tablet, and mobile devices.
 
 ![MeetMeet Responsive Mockup](documentation/images/mock.webp)
+
 
 ## Agile Methodology
 
@@ -17,6 +21,8 @@ The application is fully responsive, ensuring a consistent user experience acros
 This project was developed using Agile principles, specifically utilizing the Kanban method to manage tasks and workflow. The development process focused on iterative delivery, ensuring that the Minimum Viable Product (MVP) was established first before moving on to advanced features. This approach allowed for continuous integration and rapid adaptation to technical challenges.
 
 [Link to GitHub Project Board](https://github.com/users/sasha-fedorov/projects/4)
+
+![Project Board](documentation/images/project_board.png)
 
 ### Specifics of Methodology
 
@@ -28,6 +34,7 @@ The work was organized using a hierarchical structure to maintain scope and clar
   - **Acceptance Criteria:** Every User Story included specific criteria that defined the "Definition of Done," ensuring functional requirements were met before the task was closed.
   - **MoSCoW Prioritization:** Tasks were prioritized into "Must Have" (MVP) and "Won't Have" (Future Features) to strictly adhere to the project deadline.
 
+
 ## UX Planning
 
 ### Planning Description
@@ -36,7 +43,7 @@ The design process began with a "Content-First" approach, identifying the necess
 
 ### Wireframes
 
-Wireframes were created using Canva to visualize the layout for mobile and desktop views prior to writing code.
+Wireframes were created using Figma to visualize the layout for mobile and desktop views prior to writing code.
 
 <details>
   <summary><b>Click to expand wireframes</b></summary>
@@ -71,7 +78,7 @@ Wireframes were created using Canva to visualize the layout for mobile and deskt
       <td width="17%" ><img src="documentation/images/wireframes/meetup_detail_mobile.png" /></td>
     </tr>
     <tr>
-      <td colspan="3" align="center"><b>Meetup managment</b></td>
+      <td colspan="3" align="center"><b>Meetup management</b></td>
     </tr>
     <tr>
       <td width="58%"><img src="documentation/images/wireframes/meetup_manage_desktop.png" /></td>
@@ -138,27 +145,100 @@ The palette uses a high-contrast primary pink for actions, with distinct status 
 
 ![Color Palette](documentation/images/typography.png)
 
+
 ## Features Implemented and Futures
 
 ### Existing Features
 
 - **User Authentication:** Secure registration and login functionality handled via `django-allauth`.
+  <details>
+    <summary>Click to preview</summary>
+
+    | ![Login](documentation/images/features/login.png) | ![Logout](documentation/images/features/logout.png) |
+    | - | - |
+
+    </details>
+---
+
 - **Event Management (CRUD):** Users can Create, Read, Update, and Delete their own meetups.
+  <details>
+  <summary>Click to preview</summary>
+
+  | ![Create Meetup](documentation/images/features/meetup_create.png) | ![Update Delete Meetup](documentation/images/features/meetup_update_delete.png) |
+  | - | - |
+
+  </details>
+---
+
 - **Smart Permissions:** Only the organizer of an event can edit or delete it.
+  <details>
+  <summary>Click to preview</summary>
+
+  | ![Update Delete Meetup](documentation/images/features/meetup_update_delete.png) | ![Meetup Update Restricted](documentation/images/features/meetup_update_restrict.png) |
+  | - | - |
+
+  </details>
+---
+
 - **Dynamic Participation:**
   - **Open Events:** Users can join instantly.
   - **Restricted Events:** Users must request approval; the status defaults to "Pending".
+  <details>
+  <summary>Click to preview</summary>
+
+  | ![Join Meetup](documentation/images/features/meetup_join.png) | ![Request to Join Meetup](documentation/images/features/meetup_request_join.png) |
+  | - | - |
+
+  </details>
+---
+
 - **Organizer Dashboard:** A dedicated section on the event page for organizers to Approve, Reject, or Remove participants.
+
+  <details>
+  <summary>Click to preview</summary>
+
+  ![Meetup Management Dashboard](documentation/images/features/meetup_approve.png)
+
+  </details>
+---
+
 - **Prioritized Feed:** The homepage automatically sorts events created by the logged-in user to the top of the list.
+
+  <details>
+  <summary>Click to preview</summary>
+
+  ![Meetups Sorting](documentation/images/features/meetup_sort.png)
+
+  </details>
+---
+
 - **Defensive Design:** Backend validation prevents users from scheduling events in the past or joining events that have already finished.
+
+  <details>
+  <summary>Click to preview</summary>
+
+  ![Meetup Validation Error](documentation/images/features/meetup_validation_error.png)
+
+  </details>
+---
+
+- **Participant Limits:** Automatically closing an event when `max_participants` is reached.
+
+  <details>
+  <summary>Click to preview</summary>
+
+  ![meetup Full](documentation/images/features/meetup_full.png)
+
+  </details>
+---
 
 ### Future Features (Roadmap)
 
 - **User Profile:** Ability to upload a profile image and set a display name.
-- **Advanced Security:** Password reset via email and email address confirmation.
 - **Notifications:** Email alerts for organizers when a new join request is received.
-- **Participant Limits:** Automatically closing an event when `max_participants` is reached.
+- **Advanced Security:** Password reset via email and email address confirmation.
 - **Search & Filter:** Filtering events by date range or location.
+
 
 ## Data Model and Schema
 
@@ -178,9 +258,11 @@ ERDs provide a visual blueprint of your database structure throughout the entire
 
 **Key Logic:** A User owns the meetups they create and manages the participation requests for them, while participating in others' meetups through the participation table.
 
+
 ## Validation and Testing
 
 For detailed information about testing, bugfixing, validation, please refer to **[TESTING.md](TESTING.md)**.
+
 
 ## Libraries, Languages, and Tools
 
@@ -189,7 +271,6 @@ For detailed information about testing, bugfixing, validation, please refer to *
 - **Python:** Selected for its readability and robust ecosystem.
 - **Django:** Chosen for its "batteries-included" approach, providing built-in authentication, ORM, and security against common attacks (CSRF, SQL Injection).
 - **HTML5 / CSS3:** Used for semantic markup and styling.
-- **Bootstrap 5:** Used for rapid, responsive UI development and grid system.
 
 ### Libraries & Utilities
 
@@ -197,13 +278,15 @@ For detailed information about testing, bugfixing, validation, please refer to *
 - **Gunicorn:** A production-grade WSGI HTTP Server for UNIX, used to serve the Django application on Render.
 - **WhiteNoise:** Used to serve static files efficiently directly from the Django application in production.
 - **Dotenv:** Used to manage environment variables (secrets) securely during local development.
+- **Django-Bootstrap5:** Used for rapid, responsive UI development, forms and notifications.
 
 ### Tools & Programs
 
 - **[VS Code](https://code.visualstudio.com/)** – Main code editor for development.
 - **[Google Chrome](https://www.google.com/chrome/)** – Browser for testing and verifying web functionality.
 - **[Chrome DevTools](https://developer.chrome.com/docs/devtools)** – Used for debugging and checking responsiveness.
-- **[autopep8 VSCode Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8)** – Enforced PEP8 compliance.
+- **[flake8 VSCode Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)** – Enforced PEP8 compliance.
+- **[Figma](https://www.figma.com/)** – used to create site favicon, wireframes and documentation images
 - **[Fork](https://fork.dev/)** – Git client for version control.
 
 ### Services
@@ -215,20 +298,57 @@ For detailed information about testing, bugfixing, validation, please refer to *
 - **[Coolors](https://coolors.co/)** – Color palette generation.
 - **[dbdiagram.io](https://dbdiagram.io/)** – Database schema visualization.
 
+
 ## Deployment & Local Development
 
-### Deployment
+### Deployment (Render)
 
-The application is deployed on **Render** using a PostgreSQL database.
+This project is deployed on Render (https://render.com). A Render account is required — accounts can be created for free and provide a straightforward path to deploy the app and provision a managed PostgreSQL database.
 
-1.  **Database:** A managed PostgreSQL instance was created on Render.
-2.  **Web Service:** A new Web Service was linked to the GitHub repository.
-3.  **Environment Variables:** The following variables were set in the Render dashboard:
-    - `DATABASE_URL`: Connection string provided by Render.
-    - `SECRET_KEY`: A generated Django secret key.
-    - `PYTHON_VERSION`: `3.14.0` Required Python version.
-    - `WEB_CONCURRENCY`: `4` Required Render constant.
-4.  **Build Script:** A `build.sh` script was added to handle dependency installation, static file collection, and database migrations.
+Follow these step-by-step instructions to deploy the project to Render:
+
+1. Create a Render account
+  - Visit https://render.com and sign up (free plans available). Verify your email.
+
+2. Prepare your GitHub repository
+  - Push your project to a GitHub repository (public or private). Ensure the repository contains the `requirements.txt` and `build.sh` files.
+
+3. Create a managed PostgreSQL instance on Render
+  - In the Render dashboard choose **New → PostgreSQL**.
+  - Select a plan (free trial or paid plan as needed) and create the database.
+  - After creation, copy the provided database URL — you will use it as `DATABASE_URL`.
+
+4. Create a new Web Service on Render
+  - In the Render dashboard choose **New → Web Service**.
+  - Connect your GitHub repository and select the branch to deploy (e.g., `main`).
+  - For the **Environment**, choose `Python` and set the **Build Command** and **Start Command** if needed (the project includes `build.sh` to automate build tasks).
+
+5. Set environment variables in the Render service settings
+  - Add these environment variables in the Render Web Service settings:
+    - `DATABASE_URL`: connection string from the PostgreSQL service.
+    - `SECRET_KEY`: a securely generated Django secret key.
+    - `PYTHON_VERSION`: `3.14.0` (or the desired supported version).
+    - `WEB_CONCURRENCY`: `4` (optional; tune for your instance size).
+
+6. Add the build script and static file collection
+  - Ensure `build.sh` exists at the repository root and is executable. Typical responsibilities:
+    - Install dependencies (`pip install -r requirements.txt`).
+    - Run migrations (`python manage.py migrate`).
+    - Collect static files (`python manage.py collectstatic --noinput`).
+  - Example `build.sh` usage is already included in this repo.
+
+7. Deploy and verify
+  - Trigger a manual deploy from the Render dashboard or push a new commit to the branch.
+  - Monitor the build logs for errors and confirm the service becomes healthy.
+  - Visit the assigned Render URL to verify the site.
+
+8. Post-deploy checks
+  - Confirm environment variables are applied and migrations ran successfully.
+  - Check static assets, login/registration, and a sample meetup creation flow.
+
+Notes:
+- Render provides free-tier accounts for small projects and evaluation — upgrade if you need more resources or production SLA.
+- Keep secrets secure; do not commit `SECRET_KEY` or production credentials to the repository.
 
 ### Local Development
 
@@ -279,6 +399,26 @@ To fork the **MeetMeet** repository to your own GitHub account:
 1. Log in (or sign up) to GitHub.
 2. Go to the repository: **[sasha-fedorov/meetmeet](https://github.com/sasha-fedorov/meetmeet)**.
 3. Click the **Fork** button in the top right corner to create a copy under your own account.
+
+### Seeding
+
+To populate realistic test data (useful locally or after a free Render database reset), a helper script is included.
+
+- **File:** `seed_test_data.py`
+- **Purpose:** Creates test users and a collection of realistic meetups for manual testing and development.
+- **How to run:**
+
+```bash
+# From the project root run the Django shell and execute the script:
+python manage.py shell
+exec(open('seed_test_data.py', encoding='utf-8').read())
+```
+
+- **Notes:**
+  - The script is safe for development and deletes previously created `testuser_` users before creating new ones.
+  - This makes re-populating a Render free-tier PostgreSQL instance straightforward after automatic resets.
+  - Adjust `APP_NAME` or event pools in the script if you customize the app structure.
+
 
 ## Credits
 
