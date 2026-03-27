@@ -93,7 +93,8 @@ class MeetupViewTests(TestCase):
         response = self.client.get(
             reverse('meetup_update', kwargs={'pk': self.meetup.pk}))
         # Your handle_no_permission redirects to 'meetup_list'
-        self.assertRedirects(response, reverse('meetup_list'))
+        self.assertRedirects(response, reverse(
+            'meetup_detail', kwargs={'pk': self.meetup.pk}))
 
     def test_toggle_participation_request(self):
         """Test that a guest can request to join a closed meetup."""
