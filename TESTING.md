@@ -152,6 +152,8 @@ python3 manage.py test meetups
 
 Tests are included in `meetups/tests.py` and are fast to run; they provide confidence that features work as intended and help prevent regressions during development.
 
+![Automated Tests Result](documentation/images/tests/automated_tests_result.png)
+
 ### Manual Testing
 
 Manual testing was conducted throughout development and after deployment on the following devices:
@@ -162,40 +164,40 @@ Manual testing was conducted throughout development and after deployment on the 
 
 #### User Identity & Accounts
 
-| Test | Result | Notes |
-|:-----|:------:|:------|
-| User can create an account | Pass | |
-| User can create an account without email | Pass | |
-| Registration form validates inputs correctly | Pass | |
-| Login / registration forms show clear explanations for incorrect inputs | Pass | |
-| User is automatically signed in after registration | Pass | |
-| User can sign in | Pass | |
-| User can sign out | Pass | |
+| Feature | Test | Expected Result | Actual Result |
+|:--------|:-----|:----------------|:--------------|
+| Registration | User can create an account | Account created and user redirected to home | Pass |
+| Registration | User can create an account without email | Account created (email optional) | Pass |
+| Registration validation | Registration form validates inputs correctly | Validation errors shown for invalid inputs | Pass |
+| Authentication UX | Login / registration forms show clear explanations for incorrect inputs | Clear error messages displayed | Pass |
+| Auto-signin | User is automatically signed in after registration | User session active after signup | Pass |
+| Authentication | User can sign in | User can log in with valid credentials | Pass |
+| Authentication | User can sign out | Session ends and user is redirected | Pass |
 
 #### Meetup Content Lifecycle
 
-| Test | Result | Notes / Fix |
-|:-----|:------:|:-----------|
-| Unauthorized user cannot create meetups | Pass | |
-| User can create a meetup | Pass | |
-| User can update a meetup | Pass | |
-| User can only edit their own meetups | Pass | |
-| Create / update forms validate inputs correctly | Pass | |
-| Create / update forms show clear explanations for incorrect inputs | Pass | |
-| User can delete meetup | Fail | While styling the page the delete functionality was lost; restored working form functionality (fixed) |
+| Feature | Test | Expected Result | Actual Result |
+|:--------|:-----|:----------------|:--------------|
+| Meetup creation | Unauthorized user cannot create meetups | Action blocked and redirected to login | Pass |
+| Meetup creation | User can create a meetup | Meetup created and visible on list/detail | Pass |
+| Meetup update | User can update a meetup | Changes saved and shown on detail page | Pass |
+| Permissions | User can only edit their own meetups | Edit access denied for non-organizers | Pass |
+| Form validation | Create / update forms validate inputs correctly | Validation errors shown for invalid input | Pass |
+| Form UX | Create / update forms show clear explanations for incorrect inputs | Clear inline error messages | Pass |
+| Meetup deletion | User can delete meetup | Meetup removed after confirmation | Fail (was broken during styling; functionality restored — fixed) |
 
 #### Meetup Participation
 
-| Test | Result | Notes / Fix |
-|:-----|:------:|:-----------|
-| Users and organizers receive clear messages for interactions | Fail | Added messages for key events (fixed) |
-| User can join open meetups | Pass | |
-| User can cancel attendance | Pass | |
-| User can request to join meetup | Pass | |
-| User can cancel request | Pass | |
-| User can see participation status (going / not going / requested) | Pass | |
-| Organizer can see participants | Pass | |
-| Organizer can manage participants (approve / decline / remove) | Pass | |
+| Feature | Test | Expected Result | Actual Result |
+|:--------|:-----|:----------------|:--------------|
+| Notifications | Users and organizers receive clear messages for interactions | Informative messages shown for create/update/delete/join actions | Fail (messages added for key events; fixed) |
+| Join flow | User can join open meetups | Participation record created and status set to "going" | Pass |
+| Cancel attendance | User can cancel attendance | Participation status updated appropriately | Pass |
+| Request to join | User can request to join meetup | Participation record created with "pending" | Pass |
+| Cancel request | User can cancel request | Pending request removed or cancelled | Pass |
+| Status visibility | User can see participation status (going / not going / requested) | Status visible on meetup detail and list where relevant | Pass |
+| Organizer view | Organizer can see participants | Organizer can view participant list and statuses | Pass |
+| Organizer tools | Organizer can manage participants (approve / decline / remove) | Actions update participation status and notify users | Pass |
 
 
 ### Bugs and issues
